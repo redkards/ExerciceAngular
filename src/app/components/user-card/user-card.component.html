@@ -1,1 +1,24 @@
 <p>user-card works!</p>
+
+<h1>carte utilisateur</h1>
+@if (visible) {
+
+
+
+
+<div class="card" style="width: 18rem">
+  <img src="https://picsum.photos/200/200" class="card-img-top" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title">{{ utilisateur.nom }} {{ utilisateur.prenom }}</h5>
+    <p class="card-text">description du User</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-user">nom : {{ utilisateur.nom }}</li>
+    <li class="list-group-user">prenom : {{ utilisateur.prenom }}</li>
+    <li class="list-group-user">age : {{ utilisateur.age }}</li>
+  </ul>
+</div>
+
+<button type="submit" (click)="toggleVisible()">delete</button>
+
+}

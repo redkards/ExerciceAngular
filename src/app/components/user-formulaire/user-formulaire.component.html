@@ -1,1 +1,14 @@
 <p>user-formulaire works!</p>
+
+<h1>formulaire d'ajout utilisateur</h1>
+
+<form [formGroup]="nouvelUtilisateur" (ngSubmit)="addUser()">
+
+  <input type="text" name="nom" formControlName="nom">
+
+
+  <input type="text" name="prenom" formControlName="prenom">
+  <input type="text" name="age" formControlName="age">
+
+  <button type="submit">ajouter Carte Utilisateur</button>
+</form>

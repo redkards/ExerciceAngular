@@ -1,1 +1,15 @@
 <p>user-view works!</p>
+
+<h1>affichage des cartes d'utilisateur</h1>
+
+@for (item of users; track $index) {
+
+<app-user-card [utilisateur]="item"></app-user-card>
+}@empty {
+
+<p>pas d'utilisateur</p>
+}
+
+<h2>affichage du formulaire d'ajout</h2>
+
+<app-user-formulaire (utilisateurAjoute)="addUtilisateur($event)"></app-user-formulaire>
