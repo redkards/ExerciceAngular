@@ -1,0 +1,109 @@
+<p>test-user-forms-array works!</p>
+<form [formGroup]="userForm">
+  @for (item of users; track $index) {
+  <div class="container">
+    <div>
+      <div>
+        {{ item.entreprise}}
+
+        <div>
+          <div>
+            {{ item.nom}} {{item.prenom}}
+          </div>
+          <div>
+            <p>email: {{item.email}} </p>
+
+            @for (telephone of item.telephones; track $index) {
+            <p>Téléphone : {{ telephone.numero }}</p>
+            }
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  }
+
+  <!-- input prenom -->
+  <div>
+    <label for="prenom">prenom : </label>
+    <input type="text" id="prenom" formControlName="prenom" placeholder="prenom">
+    @if (submitted && form['prenom'].invalid) {
+    <span>
+      @if (!form['prenom'].value) {
+      <span>
+        * prenom obligatoire
+      </span>
+      }
+      @if (form['prenom'].hasError('minLength')) {
+      <span>
+        * prenom doit contenir au moins 3 caractères
+      </span>
+      }
+    </span>
+    }
+  </div>
+
+  <!-- input email -->
+
+  <div>
+    <label for="email">Email : </label>
+    <input type="text" id="email" formControlName="email" placeholder="email">
+    @if (submitted && form['email'].invalid) {
+    <span>
+      @if (!form['email'].value) {
+      <span>
+        * email obligatoire
+      </span>
+      }
+      @if (form['email'].hasError('minLength')) {
+      <span>
+        * email est invalide
+      </span>
+      }
+    </span>
+    }
+  </div>
+
+  <!-- input telephones -->
+
+  <div formArrayName="telephones">
+
+    @for (telephone of telephones.controls; track $index) {
+
+    <div [formGroupName]="$index">
+      <label for="telephones"> telephone :</label>
+      <input type="tel" id="telephones" formControlName="numero" placeholder="telephone">
+
+      @if (submitted && form['telephones'].invalid) {
+      <div>
+        <span>
+          * numero obligatoire
+        </span>
+        @if (telephone.get('numero')?.hasError('minlength') ) {
+        <span>
+          * numero doit contenir au moins 10 caractères
+        </span>
+
+        }
+      </div>
+
+      }
+
+    </div>
+    }
+
+    @if (telephones.length >1) {
+    <button type="button" (click)="removeTelephone()">Supprimer</button>
+    }
+  </div>
+
+  <div>
+    <button type="submit" (click)="onsubmit()">envoyer</button>
+  </div>
+  <div>
+    <button type="submit" (click)="addTelephone()">Ajouter un tel</button>
+  </div>
+
+</form>

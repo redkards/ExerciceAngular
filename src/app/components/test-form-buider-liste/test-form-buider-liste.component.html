@@ -1,0 +1,37 @@
+<p>test-form-buider-liste works!</p>
+
+<form [formGroup]="produit" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label>
+      nom:
+    </label>
+    <input type="text" formControlName='nom'>
+    <!-- ajout d'un if pour afficher un message d'erreur si le nom est invalide -->
+    <!-- il n'affichera le message que si le formulaire est soumis -->
+
+    @if (submitted && form['designation'].invalid) {
+
+    <span>* nom invalide</span>
+    }
+  </div>
+
+
+
+  <div>
+    <label>
+      prix:
+    </label>
+    <input type="number" formControlName='prix'>
+    <!-- ajout d'un if pour afficher un message d'erreur si le prix est invalide -->
+    <!-- il n'affichera le message que si le formulaire est soumis -->
+    @if (submitted && form['prix'].invalid) {
+    <span>* prix invalide</span>
+    }
+
+  </div>
+
+  <button type="submit">Ajouter produit</button>
+
+
+</form>
