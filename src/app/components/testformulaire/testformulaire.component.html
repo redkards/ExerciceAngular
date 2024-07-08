@@ -1,1 +1,36 @@
 <p>testformulaire works!</p>
+
+<h1>Test Formulaire</h1>
+
+<form [formGroup]="article" (ngSubmit)="addArticle()">
+
+
+  <label>
+    nom :
+    <input type="text" formControlName="nom">
+  </label>
+
+  <label>
+    designation :
+    <input type="text" formControlName="designation">
+  </label>
+
+  <label>
+    prix :
+    <input type="number" formControlName="prix">
+  </label>
+
+  <button type="submit" [disabled]="article.invalid">Ajouter Article</button>
+
+</form>
+
+@for (item of listeArticles; track $index) {
+
+<h2>{{item.nom}}</h2>
+<p>designation : {{item.designation}}</p>
+<p>prix : {{item.prix}}</p>
+
+}
+
+total :
+{{totalPrice}}
